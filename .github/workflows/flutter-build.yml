@@ -426,7 +426,7 @@ jobs:
 
   build-for-macOS-arm64-selfhost:
     # use build-for-macOS instead
-    if: false
+    if: ${{ (false) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
     runs-on: [self-hosted, macOS, ARM64]
     needs: [generate-bridge]
     steps:
@@ -619,7 +619,7 @@ jobs:
 
   build-rustdesk-ios-selfhost:
     #if: ${{ inputs.upload-artifact }}
-    if: false
+    if: ${{ (false) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
     runs-on: [self-hosted, macOS, ARM64]
     needs: [generate-bridge]
     strategy:
